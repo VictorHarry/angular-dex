@@ -1,22 +1,10 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { PokemonService } from '../pokemon.service'
-
 import {
   trigger,
   state,
   style,
 } from '@angular/animations';
-
-interface PokemonInterface {
-  id: number,
-  name: string,
-  types: [],
-  height: number,
-  weight: number,
-  sprite: string,
-  description: string,
-  genus: string,
-}
 
 @Component({
   selector: 'app-dex',
@@ -24,35 +12,31 @@ interface PokemonInterface {
   styleUrls: ['./dex.component.css'],
   animations: [
     trigger('openClose', [
-      state('open', style({
+      state('descriptionOpen', style({
         width: '100%',
         opacity: 1,
       })),
-      state('close', style({
+      state('descriptionClose', style({
         width: '0',
         opacity: 0,
+      })),
+      state('rightCenterInfoOpen', style({
+        left: '0',
+      })),
+      state('rightCenterInfoClose', style({
+        left:'300px',
       })),
     ])
   ]
 })
 
 export class DexComponent implements OnInit {
-  pokemon:PokemonInterface = {
-    id: 0,
-    name: '',
-    types: [],
-    height: 0,
-    weight: 0,
-    sprite: '',
-    description: '',
-    genus: ''
-  };
-
+  pokemon;
   pokemon_current_id: number = 1;
-  isOpen = false;
+  openScreenInfo = false;
 
   constructor(
-    private PokemonService: PokemonService,
+    private pokemonService: PokemonService,
   ) { }
 
   ngOnInit() {
@@ -60,16 +44,17 @@ export class DexComponent implements OnInit {
   }
 
   showContentInfo() {
-    this.isOpen = true;
+    this.openScreenInfo = true;
   }
 
   hideContentInfo() {
-    this.isOpen = false;
+    this.openScreenInfo = false;
+    this.pokemon = {};
   }
 
   setFormatedPokemon() {
-    this.PokemonService.getPokemon(this.pokemon_current_id).subscribe((pokemon: any) => {
-      this.PokemonService.getPokemonSpecies(pokemon.species.url).subscribe((pokemon_specie: any) => {
+    this.pokemonService.getPokemon(this.pokemon_current_id).subscribe((pokemon: any) => {
+      this.pokemonService.getPokemonSpecies(pokemon.species.url).subscribe((pokemon_specie: any) => {
         this.showContentInfo()
         this.pokemon = {
           id: pokemon.id,
@@ -78,27 +63,11 @@ export class DexComponent implements OnInit {
           height: pokemon.height,
           weight: pokemon.weight,
           sprite: pokemon.sprites.front_default,
-          description: this.getEnLanguageObject(pokemon_specie).description,
-          genus: this.getEnLanguageObject(pokemon_specie).genus,
+          description: this.pokemonService.getEnLanguageObjects(pokemon_specie).description,
+          genus: this.pokemonService.getEnLanguageObjects(pokemon_specie).genus,
         }
       })
     })
-  }
-
-  getEnLanguageObject(pokemon: any): any {
-    let tempInfo = {}
-    pokemon.flavor_text_entries.forEach((item: any) => {
-      if (item.language.name.includes('en')) {
-        tempInfo = { description: item.flavor_text }
-      }
-    })
-
-    pokemon.genera.forEach((item: any) => {
-      if (item.language.name.includes('en')) {
-        tempInfo = { ...tempInfo, genus: item.genus }
-      }
-    })
-    return tempInfo
   }
 
   @HostListener('document:keyup', ['$event'])
@@ -121,9 +90,5 @@ export class DexComponent implements OnInit {
         this.setFormatedPokemon();
         break
     }
-  }
-
-  test(pokemon) {
-    console.log(pokemon)
   }
 }

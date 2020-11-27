@@ -1,6 +1,10 @@
-<button (click)="test(pokemon)">TESTE</button>
-<div class="gameboy">
-    <div class="gameboy-carcass"></div>
+<div class="gameboy" *ngIf="pokemon">
+    <div class="gameboy-carcass">
+        <div class="gameboy-carcass-top">
+            <div id="item-right"></div>
+            <div id="item-left"></div>
+        </div>
+    </div>
     <div class="screenContainer">
         <div class='contentContainer' id='content_container'>
             <div class='infoHeaderBackground'>
@@ -14,16 +18,13 @@
               </span>
             </div> -->
             <div class='screenCenter'>
-                <div class='waitingSearch' id='waitingSearch' *ngIf="false">
-                    <div class='searchContent'>
-                        <span id='loading_message'></span>
-                        <img src="https://i.gifer.com/2iiJ.gif" alt="Loading">
-                    </div>
-                </div>
                 <div class="sprite-container">
                     <img [src]="pokemon.sprite" alt='' class="pokemon-sprite">
+                    <div class='searchContent' *ngIf="!pokemon.sprite">
+                        <img width="70" src="https://i.gifer.com/2iiJ.gif" alt="Loading">
+                    </div>
                 </div>
-                <div class='centerRight' id='center_right'>
+                <div [@openClose]="openScreenInfo ? 'rightCenterInfoOpen' : 'rightCenterInfoClose'" class='centerRight' id='center_right'>
                     <div class='tinyInfo' id='tiny_info'>
                         <div class='tinyInfoHeader'>
                             <img src="https://image.flaticon.com/icons/svg/528/528101.svg" class="pokeballTinyHeader">
@@ -35,8 +36,7 @@
                     </div>
 
                     <div class='types' id='types'>
-                        <div class='pokemonType'><span id='pokemonType'>{{pokemon.types[0].type.name[0].toUpperCase() + pokemon.types[0].type.name.substr(1).toLowerCase()}}</span></div>
-                        <div class='pokemonType'><span id='pokemonType'>{{pokemon.types[1].type.name[0].toUpperCase() + pokemon.types[1].type.name.substr(1).toLowerCase()}}</span></div>
+                        <div *ngFor="let pokemonType of pokemon.types" class='pokemonType'><span id='pokemonType'>{{pokemonType.type.name[0].toUpperCase() + pokemonType.type.name.substr(1).toLowerCase()}}</span></div>
                     </div>
 
                     <div class='pokemonProps'>
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div class='screenBottom'>
-                <div [@openClose]="isOpen ? 'open' : 'closed'" class='fullDescriptionBox' id='fullDescriptionBox'>
+                <div [@openClose]="openScreenInfo ? 'descriptionOpen' : 'descriptionClose'" class='fullDescriptionBox' id='fullDescriptionBox'>
                     <div class='left'></div>
                     <div class='center'>
                         <span id='full_description'>{{ pokemon.description }}</span>
@@ -59,5 +59,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="gameboy-logo">
+        <p>Nintendo <span>GAME BOY</span><i>TM</i></p>
     </div>
 </div>

@@ -20,4 +20,22 @@ export class PokemonService {
     let pokemonSpecie = this.httpClient.get(URL);
     return pokemonSpecie
   }
+
+  getEnLanguageObjects(pokemon: any): any {
+    let tempInfo = {}
+
+    pokemon.flavor_text_entries.forEach((flavor_text: any) => {
+      if (flavor_text.language.name.includes('en')) {
+        tempInfo = { description: flavor_text.flavor_text }
+      }
+    })
+
+    pokemon.genera.forEach((genus: any) => {
+      if (genus.language.name.includes('en')) {
+        tempInfo = { ...tempInfo, genus: genus.genus }
+      }
+    })
+
+    return tempInfo
+  }
 }
