@@ -1,6 +1,6 @@
 # Demo
 
-https://vercel.com/dashboard/projects
+https://angular-dex.vercel.app/
 
 # AngularDex
 
