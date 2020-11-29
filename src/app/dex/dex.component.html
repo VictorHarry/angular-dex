@@ -19,7 +19,7 @@
             </div> -->
             <div class='screenCenter'>
                 <div class="sprite-container">
-                    <img [src]="pokemon.sprite" alt='' class="pokemon-sprite" [@openClose]="openScreenInfo ? 'pokemonSpriteOpen' : 'pokemonSpriteClose'">
+                    <img [src]="pokemon.sprite[currentSprite]" alt='' class="pokemon-sprite" [@openClose]="openScreenInfo ? 'pokemonSpriteOpen' : 'pokemonSpriteClose'">
                     <div class='searchContent' *ngIf="!pokemon.sprite">
                         <img width="70" src="https://i.gifer.com/2iiJ.gif" alt="Loading">
                     </div>

@@ -55,14 +55,14 @@ import {
       state('pokemonSpriteClose', style({
         opacity: 0,
       })),
-
-
     ])
   ]
 })
 
 export class DexComponent implements OnInit {
   pokemon;
+  currentSprite;
+  pokemon_sprites = ['front_default','back_default','front_shiny','back_shiny'];
   pokemon_current_id: number = 1;
   openScreenInfo = false;
 
@@ -78,7 +78,7 @@ export class DexComponent implements OnInit {
     this.openScreenInfo = true;
   }
 
-  hideContentInfo() {
+  resetContent() {
     this.openScreenInfo = false;
     this.pokemon = {};
   }
@@ -86,16 +86,16 @@ export class DexComponent implements OnInit {
   setFormatedPokemon() {
     this.pokemonService.getPokemon(this.pokemon_current_id).subscribe((pokemon: any) => {
       this.pokemonService.getPokemonSpecies(pokemon.species.url).subscribe((pokemon_specie: any) => {
+        this.currentSprite = 'front_default';
         this.pokemon = {
           id: pokemon.id,
           name: pokemon.name,
           types: pokemon.types,
           height: pokemon.height,
           weight: pokemon.weight,
-          sprite: pokemon.sprites.front_default,
+          sprite: pokemon.sprites,
           genus: this.pokemonService.getEnLanguageObjects(pokemon_specie).genus,
         }
-
         setTimeout(() => {
           this.showContentInfo()
           this.pokemon = {...this.pokemon, description: this.pokemonService.getEnLanguageObjects(pokemon_specie).description,}
@@ -108,21 +108,27 @@ export class DexComponent implements OnInit {
   handleKeyboardEvent(event: KeyboardEvent) {
     switch (event.key) {
       case 'ArrowLeft':
-        // implement sprite change
+        this.changeSprite(-1)
         break;
       case 'ArrowRight':
-        // implement sprite change
+        this.changeSprite(1);
         break
       case 'ArrowUp':
-        this.hideContentInfo()
+        this.resetContent()
         this.pokemon_current_id += 1;
         this.setFormatedPokemon();
         break;
       case 'ArrowDown':
-        this.hideContentInfo()
+        this.resetContent()
         this.pokemon_current_id == 1 ? this.pokemon_current_id = 1 : this.pokemon_current_id -= 1;
         this.setFormatedPokemon();
         break
     }
+  }
+
+  changeSprite(position) {
+    let newPosition = this.pokemon_sprites.indexOf(this.currentSprite) + position;
+    newPosition = newPosition < 0 ? 0 : newPosition > this.pokemon_sprites.length - 1 ? this.pokemon_sprites.length - 1: newPosition;
+    this.currentSprite = this.pokemon_sprites[newPosition];
   }
 }
