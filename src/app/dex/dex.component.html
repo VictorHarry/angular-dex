@@ -19,13 +19,13 @@
             </div> -->
             <div class='screenCenter'>
                 <div class="sprite-container">
-                    <img [src]="pokemon.sprite" alt='' class="pokemon-sprite">
+                    <img [src]="pokemon.sprite" alt='' class="pokemon-sprite" [@openClose]="openScreenInfo ? 'pokemonSpriteOpen' : 'pokemonSpriteClose'">
                     <div class='searchContent' *ngIf="!pokemon.sprite">
                         <img width="70" src="https://i.gifer.com/2iiJ.gif" alt="Loading">
                     </div>
                 </div>
-                <div [@openClose]="openScreenInfo ? 'rightCenterInfoOpen' : 'rightCenterInfoClose'" class='centerRight' id='center_right'>
-                    <div class='tinyInfo' id='tiny_info'>
+                <div class='centerRight' id='center_right'>
+                    <div class='tinyInfo' id='tiny_info' [@openClose]="openScreenInfo ? 'tinyInfoOpen' : 'tinyInfoClose'">
                         <div class='tinyInfoHeader'>
                             <img src="https://image.flaticon.com/icons/svg/528/528101.svg" class="pokeballTinyHeader">
                             <span id='pokemonIndex'>{{pokemon.id}} {{pokemon.name[0].toUpperCase() + pokemon.name.substr(1).toLowerCase()}} </span>
@@ -35,11 +35,11 @@
                         </div>
                     </div>
 
-                    <div class='types' id='types'>
+                    <div class='types' id='types' [@openClose]="openScreenInfo ? 'typesOpen' : 'typesClose'">
                         <div *ngFor="let pokemonType of pokemon.types" class='pokemonType'><span id='pokemonType'>{{pokemonType.type.name[0].toUpperCase() + pokemonType.type.name.substr(1).toLowerCase()}}</span></div>
                     </div>
 
-                    <div class='pokemonProps'>
+                    <div class='pokemonProps' [@openClose]="openScreenInfo ? 'pokemonPropsOpen' : 'pokemonPropsClose'">
                         <div class='propTop'>
                             <span id='heightProp'>HT {{pokemon.height/10}} m</span>
                         </div>

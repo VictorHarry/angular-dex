@@ -114,15 +114,17 @@
 }
 
 .centerRight {
-    position: relative;
     opacity: 1;
     transition: all 0.75s ease-out;
-    left: 300px;
     display: flex;
     flex-flow: column;
 }
 
 .tinyInfo {
+    position: relative;
+    left: 300px;
+    opacity: 0;
+    transition: left 0.3s;
     display: flex;
     flex-flow: column;
     border: solid black 1px;
@@ -132,7 +134,6 @@
     height: 80px;
     box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.49);
     overflow: hidden;
-    transition: all 1s ease-out;
 }
 
 .tinyInfo .tinyInfoHeader {
@@ -163,6 +164,10 @@
 }
 
 .types {
+    position: relative;
+    left: 300px;
+    opacity: 0;
+    transition: left 0.6s;
     display: flex;
     flex-flow: row;
     justify-content: flex-end;
@@ -197,6 +202,10 @@
 }
 
 .pokemonProps {
+    position: relative;
+    left: 300px;
+    transition: left 0.9s;
+    opacity: 0;
     margin-top: 23px;
     display: flex;
     flex-flow: column;
@@ -207,7 +216,6 @@
     height: 70px;
     box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.49);
     overflow: hidden;
-    transition: all 0.75s ease-out;
     align-self: flex-end;
 }
 
@@ -242,6 +250,7 @@
 }
 
 .fullDescriptionBox {
+    transition: all 0.9s;
     display: flex;
     opacity: 0;
     margin: 10px;
@@ -251,10 +260,8 @@
     background-color: white;
     width: 0;
     min-height: 160px;
-    height: fit-content;
     box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.49);
     overflow: hidden;
-    transition: all 0.7s ease-out;
 }
 
 .fullDescriptionBox .left {
@@ -294,6 +301,7 @@
     animation: scaling 3s infinite ease-in-out;
     margin-left: 20px;
     position: absolute;
+    opacity: 0;
 }
 
 .searchContent #loading_message {
@@ -311,16 +319,16 @@
     font-weight: bold;
 }
 
-.gameboy-logo p{
+.gameboy-logo p {
     font-size: 30px;
 }
 
-.gameboy-logo span{
+.gameboy-logo span {
     font-size: 35px;
     font-weight: 100;
 }
 
-.gameboy-logo i{
+.gameboy-logo i {
     font-size: 16px;
 }
 
@@ -341,11 +349,9 @@
         top: -75px !important;
         height: 120vh !important;
     }
-
     .gameboy-logo {
         height: 0px !important;
     }
-
     .screenContainer {
         height: 550px !important;
     }

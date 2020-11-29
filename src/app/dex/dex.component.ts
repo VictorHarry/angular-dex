@@ -12,20 +12,51 @@ import {
   styleUrls: ['./dex.component.css'],
   animations: [
     trigger('openClose', [
+
       state('descriptionOpen', style({
         width: '100%',
         opacity: 1,
       })),
       state('descriptionClose', style({
         width: '0',
-        opacity: 0,
+        opacity: '0',
       })),
-      state('rightCenterInfoOpen', style({
+
+      state('tinyInfoOpen', style({
+        opacity: 1,
         left: '0',
       })),
-      state('rightCenterInfoClose', style({
+      state('tinyInfoClose', style({
+        opacity: 0,
         left:'300px',
       })),
+
+      state('typesOpen', style({
+        opacity: 1,
+        left: '0',
+      })),
+      state('typesClose', style({
+        opacity: 0,
+        left:'300px',
+      })),
+
+      state('pokemonPropsOpen', style({
+        opacity: 1,
+        left: '0',
+      })),
+      state('pokemonPropsClose', style({
+        opacity: 0,
+        left:'300px',
+      })),
+
+      state('pokemonSpriteOpen', style({
+        opacity: 1,
+      })),
+      state('pokemonSpriteClose', style({
+        opacity: 0,
+      })),
+
+
     ])
   ]
 })
@@ -55,7 +86,6 @@ export class DexComponent implements OnInit {
   setFormatedPokemon() {
     this.pokemonService.getPokemon(this.pokemon_current_id).subscribe((pokemon: any) => {
       this.pokemonService.getPokemonSpecies(pokemon.species.url).subscribe((pokemon_specie: any) => {
-        this.showContentInfo()
         this.pokemon = {
           id: pokemon.id,
           name: pokemon.name,
@@ -63,9 +93,13 @@ export class DexComponent implements OnInit {
           height: pokemon.height,
           weight: pokemon.weight,
           sprite: pokemon.sprites.front_default,
-          description: this.pokemonService.getEnLanguageObjects(pokemon_specie).description,
           genus: this.pokemonService.getEnLanguageObjects(pokemon_specie).genus,
         }
+
+        setTimeout(() => {
+          this.showContentInfo()
+          this.pokemon = {...this.pokemon, description: this.pokemonService.getEnLanguageObjects(pokemon_specie).description,}
+        }, 500);
       })
     })
   }
