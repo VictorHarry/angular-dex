@@ -1,61 +1,69 @@
-<div class="gameboy" *ngIf="pokemon">
+<div class="gameboy">
     <div class="gameboy-carcass">
         <div class="gameboy-carcass-top">
             <div id="item-right"></div>
             <div id="item-left"></div>
         </div>
     </div>
-    <div class="screenContainer">
-        <div class='contentContainer' id='content_container'>
-            <div class='infoHeaderBackground'>
-                <div class='infoHeader'>
-                    <span id='info'>INFO</span>
-                </div>
-            </div>
-            <!-- <div class='greetings' id='greetings'>
-                <span>
-                Hi, this is a Pokedex made with PokeApi. I'm still working on it to add new features... For more details about PokeApi click <a href = 'https://pokeapi.co/docs/v2' target="_blank">HERE</a> 
-              </span>
-            </div> -->
-            <div class='screenCenter'>
-                <div class="sprite-container">
-                    <img [src]="pokemon.sprite[currentSprite]" alt='' class="pokemon-sprite" [@openClose]="openScreenInfo ? 'pokemonSpriteOpen' : 'pokemonSpriteClose'">
-                    <div class='searchContent' *ngIf="!pokemon.sprite">
-                        <img width="70" src="https://i.gifer.com/2iiJ.gif" alt="Loading">
+    <div class="screenBorder">
+        <div class="battery">
+            <div id="power"></div>
+            <span>BATTERY</span>
+        </div>
+        <div class="screenContainer">
+            <div class='contentContainer' id='content_container'>
+                <div class='infoHeaderBackground'>
+                    <div class='infoHeader'>
+                        <span id='info'>INFO</span>
                     </div>
                 </div>
-                <div class='centerRight' id='center_right'>
-                    <div class='tinyInfo' id='tiny_info' [@openClose]="openScreenInfo ? 'tinyInfoOpen' : 'tinyInfoClose'">
-                        <div class='tinyInfoHeader'>
-                            <img src="https://image.flaticon.com/icons/svg/528/528101.svg" class="pokeballTinyHeader">
-                            <span id='pokemonIndex'>{{pokemon.id}} {{pokemon.name[0].toUpperCase() + pokemon.name.substr(1).toLowerCase()}} </span>
-                        </div>
-                        <div class='tinyInfoDescription'>
-                            <span id='tiny_description'>{{ pokemon.genus }}</span>
+                <!-- 
+                    <div class='greetings' id='greetings'>
+                        <span>
+                            Hi, this is a Pokedex made with PokeApi. I'm still working on it to add new features... For more details about PokeApi click <a href = 'https://pokeapi.co/docs/v2' target="_blank">HERE</a> 
+                        </span>
+                    </div> 
+                -->
+                <div class='screenCenter'>
+                    <div class="sprite-container">
+                        <img [src]="pokemon.sprite[currentSprite]" alt='' class="pokemon-sprite" [@openClose]="openScreenInfo ? 'pokemonSpriteOpen' : 'pokemonSpriteClose'">
+                        <div class='searchContent' *ngIf="!pokemon.description">
+                            <img width="70" src="assets/imgs/loading_pikachu.gif">
                         </div>
                     </div>
+                    <div class='centerRight' id='center_right'>
+                        <div class='tinyInfo' id='tiny_info' [@openClose]="openScreenInfo ? 'tinyInfoOpen' : 'tinyInfoClose'">
+                            <div class='tinyInfoHeader'>
+                                <img src="https://image.flaticon.com/icons/svg/528/528101.svg" class="pokeballTinyHeader">
+                                <span id='pokemonIndex'>{{pokemon.id}} {{pokemon.name[0].toUpperCase() + pokemon.name.substr(1).toLowerCase()}} </span>
+                            </div>
+                            <div class='tinyInfoDescription'>
+                                <span id='tiny_description'>{{ pokemon.genus }}</span>
+                            </div>
+                        </div>
 
-                    <div class='types' id='types' [@openClose]="openScreenInfo ? 'typesOpen' : 'typesClose'">
-                        <div *ngFor="let pokemonType of pokemon.types" class='pokemonType'><span id='pokemonType'>{{pokemonType.type.name[0].toUpperCase() + pokemonType.type.name.substr(1).toLowerCase()}}</span></div>
-                    </div>
-
-                    <div class='pokemonProps' [@openClose]="openScreenInfo ? 'pokemonPropsOpen' : 'pokemonPropsClose'">
-                        <div class='propTop'>
-                            <span id='heightProp'>HT {{pokemon.height/10}} m</span>
+                        <div class='types' id='types' [@openClose]="openScreenInfo ? 'typesOpen' : 'typesClose'">
+                            <div *ngFor="let pokemonType of pokemon.types" class='pokemonType'><span id='pokemonType'>{{pokemonType.type.name[0].toUpperCase() + pokemonType.type.name.substr(1).toLowerCase()}}</span></div>
                         </div>
-                        <div class='propBot'>
-                            <span id='weightProp'>WT {{pokemon.weight/10}} kg</span>
+
+                        <div class='pokemonProps' [@openClose]="openScreenInfo ? 'pokemonPropsOpen' : 'pokemonPropsClose'">
+                            <div class='propTop'>
+                                <span id='heightProp'>HT {{pokemon.height/10}} m</span>
+                            </div>
+                            <div class='propBot'>
+                                <span id='weightProp'>WT {{pokemon.weight/10}} kg</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class='screenBottom'>
-                <div [@openClose]="openScreenInfo ? 'descriptionOpen' : 'descriptionClose'" class='fullDescriptionBox' id='fullDescriptionBox'>
-                    <div class='left'></div>
-                    <div class='center'>
-                        <span id='full_description'>{{ pokemon.description }}</span>
+                <div class='screenBottom'>
+                    <div [@openClose]="openScreenInfo ? 'descriptionOpen' : 'descriptionClose'" class='fullDescriptionBox' id='fullDescriptionBox'>
+                        <div class='left'></div>
+                        <div class='center'>
+                            <span id='full_description'>{{ pokemon.description }}</span>
+                        </div>
+                        <div class='right'></div>
                     </div>
-                    <div class='right'></div>
                 </div>
             </div>
         </div>

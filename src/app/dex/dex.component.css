@@ -4,7 +4,8 @@
     position: relative;
     justify-content: center;
     align-items: center;
-    width: 720px;
+    width: 830px;
+    margin-top: 10%;
 }
 
 .gameboy-carcass {
@@ -12,7 +13,7 @@
     z-index: -1;
     border-radius: 40px;
     width: 110%;
-    top: -100px;
+    top: -10%;
     height: 110vh;
     background-color: #c7c7c7;
     box-shadow: -17px 20px #565656
@@ -36,14 +37,54 @@
     border-left: 6px solid #a2a1a1;
 }
 
+.screenBorder {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+    background: rgb(145, 140, 146);
+    background: linear-gradient(128deg, rgb(134 134 134) 20%, rgb(169 169 169) 50%, rgb(144 144 144) 80%);
+    width: 100%;
+    border-radius: 20px 20px 75px;
+    height: 700px;
+    top: 0;
+}
+
+.battery {
+    position: absolute;
+    left: 20px;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-flow: column;
+}
+
+.battery span {
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.battery #power {
+    height: 10px;
+    width: 10px;
+    background: rgb(255, 76, 76);
+    background: radial-gradient(circle, rgba(255, 76, 76, 1) 48%, rgba(255, 0, 0, 1) 100%, rgba(255, 0, 0, 1) 100%, rgba(255, 0, 0, 1) 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 6px 1px red;
+}
+
 .screenContainer {
+    border: 8px solid #434343;
     z-index: 999;
-    border: solid black 15px;
     border-radius: 10px;
     overflow: hidden;
     background: #e0e0e0;
-    width: 100%;
-    height: 600px;
+    width: 75%;
+    height: 75%;
     background-size: 60px 60px;
     background-image: linear-gradient(to right, grey 1px, transparent 1px), linear-gradient(to bottom, grey 1px, transparent 1px);
 }
@@ -51,7 +92,7 @@
 .contentContainer {
     display: flex;
     flex-flow: column;
-    width: inherit;
+    width: 100%;
     height: inherit;
 }
 
@@ -111,6 +152,7 @@
     margin: 12px 10px;
     height: 300px;
     justify-content: space-between;
+    width: 97%;
 }
 
 .centerRight {
@@ -259,7 +301,7 @@
     border-radius: 4px;
     background-color: white;
     width: 0;
-    min-height: 160px;
+    min-height: 135px;
     box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.49);
     overflow: hidden;
 }
@@ -353,6 +395,6 @@
         height: 0px !important;
     }
     .screenContainer {
-        height: 550px !important;
+        height: 75% !important;
     }
 }
