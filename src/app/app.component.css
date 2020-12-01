@@ -1,0 +1,30 @@
+@font-face {
+    font-family: pixel;
+    src: url(/assets/fonts/pixel/pixelmix.ttf) format("truetype");
+}
+
+.container {
+    width: 100vw;
+    display: flex;
+}
+
+.tips {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+}
+
+.tips #tip {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tips span {
+    color: white;
+    font-family: pixel;
+    font-size: 16px;
+    margin-bottom: 15px;
+}

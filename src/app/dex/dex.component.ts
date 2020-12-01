@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { PokemonService } from '../pokemon.service'
+import { PokemonService } from '../pokemon.service';
 import {
   trigger,
   state,
