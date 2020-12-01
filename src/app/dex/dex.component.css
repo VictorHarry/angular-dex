@@ -5,16 +5,16 @@
     justify-content: center;
     align-items: center;
     width: 830px;
-    margin-top: 10%;
 }
 
 .gameboy-carcass {
-    position: absolute;
-    z-index: -1;
-    border-radius: 40px;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    flex-flow: column;
+    border-radius: 40px 40px 0 0;
+    height: fit-content;
     width: 110%;
-    top: -10%;
-    height: 110vh;
     background-color: #c7c7c7;
     box-shadow: -17px 20px #565656
 }
@@ -38,11 +38,11 @@
 }
 
 .screenBorder {
+    margin-top: 30px;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: -1;
     background: rgb(145, 140, 146);
     background: linear-gradient(128deg, rgb(134 134 134) 20%, rgb(169 169 169) 50%, rgb(144 144 144) 80%);
     width: 100%;

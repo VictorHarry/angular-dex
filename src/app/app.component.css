@@ -3,6 +3,14 @@
     src: url(/assets/fonts/pixel/pixelmix.ttf) format("truetype");
 }
 
+.center-content {
+    display: flex;
+    align-items: flex-end;
+    padding-top: 20px;
+    position: relative;
+    height: 100vh;
+}
+
 .container {
     width: 100vw;
     display: flex;
