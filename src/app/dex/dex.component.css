@@ -386,15 +386,8 @@
     }
 }
 
-@media only screen and (max-width: 1600px) {
-    .gameboy-carcass {
-        top: -75px !important;
-        height: 120vh !important;
-    }
-    .gameboy-logo {
-        height: 0px !important;
-    }
-    .screenContainer {
-        height: 75% !important;
+@media only screen and (max-width: 1800px) {
+    .gameboy {
+        zoom: 0.8;
     }
 }
